@@ -15,7 +15,7 @@
 ## 配置别名
 
 ```bash
-git config --global alias.<alias> <command>|'<command1|2>'
+git config --global alias.<alias> <command>|'<command> <-optional>'
 ```
 
 常用别名：
