@@ -6,35 +6,37 @@
 
 - Asset
 - Books & Papers
-	- Papers
-	- `<book_name>`
+  - Papers
+  - `<book_name>`
 - Codes
-	- Python
-	- SQL
-	- others
+  - Python
+  - SQL
+  - others
 - Data
-	- Dataset
+  - Dataset
 - Enterprise
-	- Department
-		- AI Group
-	- Performance
-		- OKR
-	- Top-Down
-	- System
+  - Department
+    - AI Group
+  - Performance
+    - OKR
+  - Top-Down
+  - System
+  - 报销
+  - ...
+  - `infomation.txt` save info like QQ / tel / url about company
 - Files
-	- Configure Notes
-	- 基本操作
-	- `文档规范.md`
+  - Configure Notes
+  - BasicOps
+    - `FileSpec.md`
+- GIT
 - Projects
-	- `<project_name>`
-		- Demand
-		- Develepment Notes
-		- Files
-		- Minutes
-		- Plans
-		- Test Records
-- Records
-	- Weekly Plans
+  - `<project_name>`
+    - Develop
+    - Files
+    - Minutes
+    - Test Records
+    - `<important_notes>`
+- SVN
 - Z-Others
 
 
@@ -58,8 +60,4 @@
 ### 3. 会议/讨论记录命名规范
 
 会议/讨论日期-主题-参与人（下划线区分多人）
-
-### 4. Weekly Plans 命名规范
-
-创建日期 - 周数（基于一整年）
 
