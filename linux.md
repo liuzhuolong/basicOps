@@ -57,8 +57,6 @@ set shiftwidth=4
 set viminfo='20,\"5000
 set tags=tags;/
 
-# set mouse=a  # 可选项，推荐初学者使用
-
 colorscheme elflord
 ```
 

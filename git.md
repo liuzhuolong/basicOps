@@ -1,6 +1,6 @@
-# GIT 指南
+# Git 指南
 
-## 基础命令
+## 1. 基础命令
 
 `git init`: 新建版本库
 
@@ -12,7 +12,19 @@
 
 
 
-## 配置别名
+## 2. Git配置
+
+### 2.1 基础配置
+
+让Git显示颜色
+
+```shell
+git config --global color.ui true
+```
+
+
+
+### 2.2 配置别名
 
 ```bash
 git config --global alias.<alias> <command>|'<command> <-optional>'
@@ -36,7 +48,7 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Crese
 
 
 
-## .gitignore 语法
+### 2.3 .gitignore 语法
 
 - 空行或是以`#`开头的行即注释行将被忽略。
 
@@ -50,7 +62,7 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Crese
 
 
 
-## 其他
+## 3. 其他
 
 - 每个仓库的Git配置文件在`./git/config`中
 - 当前用户的配置文件在`~/.gitconfig`中
