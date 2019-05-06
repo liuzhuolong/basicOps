@@ -50,3 +50,41 @@ vim /usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/openssl.py
 修改为 reset
 ```
 
+## 开启bbr
+
+**修改系统变量**
+
+```shell
+echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+```
+
+**2、保存生效**
+
+```shell
+sysctl -p
+```
+
+**3、查看内核是否已开启BBR**
+
+```shell
+sysctl net.ipv4.tcp_available_congestion_control
+```
+
+显示以下即已开启：
+
+```shell
+net.ipv4.tcp_available_congestion_control = bbr cubic reno
+```
+
+**4、查看BBR是否启动**
+
+```shell
+lsmod | grep bbr
+```
+
+显示以下即启动成功：
+
+```shell
+tcp_bbr                20480  14
+```

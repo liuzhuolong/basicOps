@@ -79,16 +79,135 @@ pkill X
 
 
 
-## sshfs
+## 创建私有 docker registry
+
+1. 拉取 [registry 镜像](https://hub.docker.com/_/registry?tab=description)
+
+   ```shell
+   docker pull registry:latest
+   ```
+
+2. 启动容器以启动仓库服务
+
+   ```shell
+   docker run -d -p 5000:5000 --restart=always --name=registry-srv -v /cache1/dockerRegistry:/var/lib/registry registry
+   ```
+
+3. 拉取 [hyper/docker-registry-web 镜像](https://hub.docker.com/r/hyper/docker-registry-web) ，用于实时查看仓库镜像
+
+   ```shell
+   docker pull hyper/docker-registry-web
+   ```
+
+4. 启动服务
+
+   ```shell
+   docker run -it -d -p 5001:8080 --name registry-web --link registry-srv -e REGISTRY_URL=http://registry-srv:5000/v2 -e REGISTRY_NAME=localhost:5000 hyper/docker-registry-web
+   ```
+
+
+
+### 使用方法
+
+1. 在 `/etc/docker/daemon.json` 中添加仓库地址
+
+   ```json
+   {
+   	"insecure-registries": ["<host:port>"]    
+   }
+   ```
+
+2. 将 docker image tag 成指定格式
+
+   ```shell
+   docker tag <image_id> <host>:<port>/<image_name>:<tag>
+   ```
+
+2.  push 镜像
+
+   ```shell
+   docker push <host>:<port>/<image_name>:<tag>
+   ```
+
+3. 拉取也是一样
+
+   ```shell
+   docker pull <host>:<port>/<image_name>:<tag>
+   ```
+
+   
+
+
+
+### bugfix
+
+启动web服务时遇到错误
 
 ```shell
-# mount
-sshfs [user@]hostname:[directory] mountpoint
-
-# configure: allow other user access the mounted files
--o allow_other 
-
-# unmount
-fusermount -u mountpoint
+Error response from daemon: mkdir /var/lib/docker/overlay/*** : invalid argument
 ```
+
+使用 `docker info` 发现（事实上是google发现） `Storage Driver: overlay` ，需要改成 `devicemapper`
+
+在 `/etc/docker/daemon.json` 添加：
+
+```json
+{
+    "storage-driver": "devicemapper"
+}
+```
+
+**注意！！！修改这个操作会丢失所有当前镜像和容器！！**
+
+确认修改的话，使用`systemctl restart docker` 生效
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

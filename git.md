@@ -10,6 +10,10 @@
 
 `git push origin <branch>`: 提交改动至远程仓库
 
+`git branch <branch_name>`：创建新branch（基于当前branch）
+
+`git checkout <branch_name>`：切换至指定branch
+
 
 
 ## 2. Git配置
