@@ -7,6 +7,7 @@ https://docs.docker-cn.com/engine/installation/
 Note: `<>`中内容表示类型
 
 ### 载入本地镜像
+
 ```
 $ docker load --input <docker_image>.tar 
 ```
@@ -39,6 +40,24 @@ docker cp <local_file> <container_id>:<container_path>
 ```
 docker cp <container_id>:<container_path> <local_file>
 ```
+
+## 镜像源
+
+换源：配置 `/etc/docker/daemon.json`
+
+```shell
+{
+	"registry-mirrors":[
+		<镜像源>
+	]
+}
+```
+
+
+
+国内源: https://registry.docker-cn.com
+
+
 
 ## Nvidia-Docker
 

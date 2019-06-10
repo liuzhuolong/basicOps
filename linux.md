@@ -6,7 +6,29 @@
 1. 写在 /etc/bashrc下
 2. 在/etc/profile.d/下创建一个sh脚本，在里面添加PATH，这个文件夹下的所有脚本会在每次启动时执行一次
 
+### 设置时区
 
+1. 通过环境变量 TZ 修改时间
+
+   `tzselect` 进入引导教程
+
+   `export TZ='Asia/Shanghai'` 即可修改时间
+
+2. 通过修改文件修改时间 (Ubuntu)
+
+   ```
+   mv /etc/localtime /etc/localtime.bak
+   cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+   echo "Asia/Shanghai" > /etc/timezone
+   dpkg-reconfigure -f noninteractive tzdata
+   ```
+
+### crontab
+
+#### 使用 date 命令
+
+- 需写成 `$(date +\$F)` 的形式才能生效
+- 需要通过修改文件来修改时区，才能影响到 crontab 的 date 命令
 
 ## 解压缩
 
@@ -94,7 +116,7 @@ PS1='\[\e[0;33m[\]\u@\h \W]\[\e[m\] \$ '
 
 # some aliases
 # ls
-alias la='ls -AlF'
+alias la='ls -AlFh'
 # docker
 alias dk='docker'
 alias di='docker images'
@@ -102,6 +124,5 @@ alias di='docker images'
 alias dsh='du -sh'
 
 ```
-
 
 
