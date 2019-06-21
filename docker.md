@@ -121,7 +121,7 @@ pkill X
 4. 启动服务
 
    ```shell
-   docker run -it -d -p 5001:8080 --name registry-web --link registry-srv -e REGISTRY_URL=http://registry-srv:5000/v2 -e REGISTRY_NAME=localhost:5000 hyper/docker-registry-web
+   docker run -it -d -p 5001:8080 --restart=always --name registry-web --link registry-srv -e REGISTRY_URL=http://registry-srv:5000/v2 -e REGISTRY_NAME=localhost:5000 hyper/docker-registry-web
    ```
 
 

@@ -30,7 +30,7 @@
 - 需写成 `$(date +\$F)` 的形式才能生效
 - 需要通过修改文件来修改时区，才能影响到 crontab 的 date 命令
 
-## 解压缩
+### 解压缩
 
 - 解压 .tar.gz
 
@@ -49,13 +49,17 @@
   tar -jxvf <filename>.tar.bz2
   ```
 
+### 配置源
+
+- Ubuntu 源
+
+  ```shell
+  
+  ```
+
   
 
-
-
-
-
-## 网络配置
+### 网络配置
 
 1. 配置 `etc/sysconfig/network-scripts/ifcfg-ethxxx`
 
@@ -89,24 +93,6 @@
 
 
 
-## 配置 vim
-
-修改或创建 `~/.vimrc` 如下：
-
-```shell
-syn on
-set nu
-set smartindent
-set autoindent
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set viminfo='20,\"5000
-set tags=tags;/
-
-colorscheme elflord
-```
-
 ## .bashrc 配置
 
 ```shell
@@ -125,4 +111,92 @@ alias dsh='du -sh'
 
 ```
 
+
+
+## VIM
+
+### 配置 .vimrc
+
+- 除自带配色方案外，可从[这里](http://www.easycolor.cc/vim/list.html)下载配色方案后放到`/usr/share/vim/vim74/colors/`下，然后配置 `colorscheme`
+- 使用 Vundle 配置
+
+```shell
+" Vundle Configure
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'vim-scripts/indentpython.vim' " indent for Python
+Plugin 'scrooloose/nerdtree' " file tree
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" configures for above plugins
+
+" NERDTree
+" map F2 to open NERDTree
+map <F2> :NERDTreeToggle<CR>
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Followings are non-Plugin stuffs
+syn on "enable highlight
+set nu "show line number
+set laststatus=2 "show status bar
+
+set autoindent "auto indent
+set expandtab "use space replace tab
+set tabstop=4 "4 space one tab
+set softtabstop=4 "delete 4 space one backspace
+set shiftwidth=4 "4 space for auto indent
+set colorcolumn=81 " show a vertical line
+
+set backspace=indent,eol,start #user-friendly backspace
+
+" color scheme config
+set t_Co=256 "enable 256 colors
+colorscheme monokai
+
+"other settings
+set viminfo='20,\"5000
+set tags=tags;/
+```
+
+- 简易配置
+
+```shell
+syn on "enable highlight
+set nu "show line number
+set laststatus=2 "show status bar
+
+set autoindent "auto indent
+set expandtab "use space replace tab
+set tabstop=4 "4 space one tab
+set softtabstop=4 "delete 4 space one backspace
+set shiftwidth=4 "4 space for auto indent
+set colorcolumn=81 " show a vertical line
+
+set backspace=indent,eol,start " user-friendly backspace
+
+" color scheme config
+set t_Co=256 "enable 256 colors
+colorscheme elflord
+
+"other settings
+set viminfo='20,\"5000
+set tags=tags;/
+```
+
+
+
+### Vundle
+
+主页：https://github.com/VundleVim/Vundle.vim
 
