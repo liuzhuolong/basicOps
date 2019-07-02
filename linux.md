@@ -101,13 +101,11 @@ PS1='\[\e[0;33m[\]\u@\h \W]\[\e[m\] \$ '
 
 
 # some aliases
-# ls
-alias la='ls -AlFh'
-# docker
+alias la='ls -Alh --file-type'
 alias dk='docker'
 alias di='docker images'
-# du
 alias dsh='du -sh'
+alias vi='vim'
 
 ```
 
@@ -134,6 +132,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'vim-scripts/indentpython.vim' " indent for Python
 Plugin 'scrooloose/nerdtree' " file tree
+Plugin 'moby/moby', {'rtp': '/contrib/syntax/vim'} " highlight for dockerfile
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -185,11 +184,9 @@ set colorcolumn=81 " show a vertical line
 
 set backspace=indent,eol,start " user-friendly backspace
 
-" color scheme config
 set t_Co=256 "enable 256 colors
 colorscheme elflord
 
-"other settings
 set viminfo='20,\"5000
 set tags=tags;/
 ```

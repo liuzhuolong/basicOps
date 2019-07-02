@@ -41,6 +41,32 @@ docker cp <local_file> <container_id>:<container_path>
 docker cp <container_id>:<container_path> <local_file>
 ```
 
+### 不加 sudo 直接 docker
+
+```shell
+cat /etc/group | grep docker # 查找 docker 组，确认其是否存在
+groups # 列出自己的用户组，确认自己在不在 docker 组中
+
+# 如果 docker 组不存在，则添加之：
+sudo groupadd docker
+
+# 将当前用户添加到 docker 组
+sudo gpasswd -a ${USER} docker
+
+# 重启服务
+sudo service docker restart
+
+# 切换一下用户组（刷新缓存）
+newgrp - docker;
+newgrp - `groups ${USER} | cut -d' ' -f1`; # TODO：必须逐行执行，不知道为什么，批量执行时第二条不会生效
+# 或者，注销并重新登录
+pkill X
+```
+
+
+
+
+
 ## 镜像源
 
 换源：配置 `/etc/docker/daemon.json`
@@ -74,28 +100,6 @@ docker: Error response from daemon: create nvidia_driver_410.78: error looking u
 
 
 
-## 不加 sudo 直接 docker
-
-```shell
-cat /etc/group | grep docker # 查找 docker 组，确认其是否存在
-groups # 列出自己的用户组，确认自己在不在 docker 组中
-
-# 如果 docker 组不存在，则添加之：
-sudo groupadd docker
-
-# 将当前用户添加到 docker 组
-sudo gpasswd -a ${USER} docker
-
-# 重启服务
-sudo service docker restart
-
-# 切换一下用户组（刷新缓存）
-newgrp - docker;
-newgrp - `groups ${USER} | cut -d' ' -f1`; # TODO：必须逐行执行，不知道为什么，批量执行时第二条不会生效
-# 或者，注销并重新登录
-pkill X
-```
-
 
 
 ## 创建私有 docker registry
@@ -124,7 +128,7 @@ pkill X
    docker run -it -d -p 5001:8080 --restart=always --name registry-web --link registry-srv -e REGISTRY_URL=http://registry-srv:5000/v2 -e REGISTRY_NAME=localhost:5000 hyper/docker-registry-web
    ```
 
-
+**另外还有 [harbor](https://github.com/search?q=harbor)是更好的仓库项目，可以删镜像，可以配置权限**
 
 ### 使用方法
 
@@ -154,7 +158,6 @@ pkill X
    docker pull <host>:<port>/<image_name>:<tag>
    ```
 
-   
 
 
 
@@ -178,15 +181,31 @@ Error response from daemon: mkdir /var/lib/docker/overlay/*** : invalid argument
 
 **注意！！！修改这个操作会丢失所有当前镜像和容器！！**
 
+**20190627：`devicemapper`需要特殊的配置，详见 [这里](https://docs.docker.com/storage/storagedriver/device-mapper-driver/) ,并且在docker 18.09 之后只推荐 `overlay2` 存储格式(未测试是否支持registry），需要内核版本 4.0 ？ 以上**
+
+**并不需要，只需要额外添加 `"storage-opts":["overlay2.override_kernel_check=true"]`即可**
+
 确认修改的话，使用`systemctl restart docker` 生效
 
 
 
+## dockerfile 制作规范
 
+### 减小 Docker Image 体积
 
+#### 使用多阶段构建
 
+- 详见 https://wiki.chinanetcenter.com/wikiApp/#/browse/50823/52228
+- 可以避免在docker中留下安装包等无用资源
+- 可以快速利用现成镜像中构建好的东西
 
+#### 在同一个RUN中删除无用资源
 
+- 在产生无用资源的那个RUN中删除无用资源，否则会一直留在这个layer中，即使在后面的layer中删除，也只是被 ’掩盖‘，实际上还是占用了空间
+
+#### 使用 alpine 系统制作镜像
+
+- alpine 相比 CentOS，Ubuntu等系统占用空间小很多
 
 
 
