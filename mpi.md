@@ -11,3 +11,4 @@ ompi_info --param <framework> <component> --level 9
 ```
 
 mpirun -mca xx_xx_xx "xx xx xx"
+

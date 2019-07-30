@@ -42,15 +42,9 @@ git config --global alias.co checkout
 git config --global alias.cm 'commit -m'
 git config --global alias.br branch
 git config --global alias.last 'log -1'
-```
-
-特别好用的 `log` 别名:
-
-```shell
+# 特别好用的log别名
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 ```
-
-
 
 ### 2.3 .gitignore 语法
 
