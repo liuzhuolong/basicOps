@@ -1,3 +1,5 @@
+# Server
+
 ## 安装
 
 ```
@@ -88,3 +90,12 @@ lsmod | grep bbr
 ```shell
 tcp_bbr                20480  14
 ```
+
+
+
+# Client
+
+## Linux
+
+- https://github.com/shadowsocks/shadowsocks-libev
+- 教程：https://www.itfanr.cc/2016/10/02/use-shadowsocks-to-have-better-internet-experience/
