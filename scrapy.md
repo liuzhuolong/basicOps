@@ -118,4 +118,9 @@
   yield scrapy.Request(url=url, headers={'User-Agent':get_user_agent()}, callback=self.parse)
   ```
 
-  
+- 使用代理进行爬取
+  - Linux 下使用 shadowsocks-libev 挂上 socks5 代理，见`./shadowsocks.md`
+  - 由于 scrapy 不支持 socks5 代理，需要将 socks5 转发到 http，使用 privoxy:
+    - 官网： https://www.privoxy.org/
+    - 教程： http://einverne.github.io/post/2018/03/privoxy-forward-socks-to-http.html
+
