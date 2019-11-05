@@ -123,4 +123,8 @@
   - 由于 scrapy 不支持 socks5 代理，需要将 socks5 转发到 http，使用 privoxy:
     - 官网： https://www.privoxy.org/
     - 教程： http://einverne.github.io/post/2018/03/privoxy-forward-socks-to-http.html
+  - **与 scrapy-splash 一起使用**
+    - 在SplashRequest里写 `args={'proxy': http:ip:port}`
+    - splash的docker需要使用参数 `--network=host` 或者在以上的ip中使用docker内可以访问的地址，原因是在 SplashRequest 中使用代理的情况下，请求是先发送给 splash 的docker 内的，而使用常用的 `127.0.0.1` 在docker无法正常访问
+    - splash的容器会随着爬取页面占用大量内存，需要手动释放或者限制爬取数量
 
