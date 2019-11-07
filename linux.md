@@ -139,11 +139,12 @@ PS1='\[\e[0;33m\][\u@\h \W]\[\e[m\] \$ '
 
 # some aliases
 alias la='ls -Alh --file-type'
+alias l='ls'
 alias dk='docker'
 alias di='docker images'
 alias dsh='du -sh'
 alias vi='vim'
-
+alias hg='history | grep'
 ```
 
 
