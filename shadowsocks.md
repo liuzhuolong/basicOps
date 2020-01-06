@@ -2,16 +2,32 @@
 
 ## 安装
 
-```
+```shell
 apt-get update --fix-missing
 apt-get install -y python-pip
-pip install shadowsocks
+# pip install shadowsocks
+pip install git+https://github.com/shadowsocks/shadowsocks.git@master
+# 安装libsodium库
+sudo su -
+apt-get install build-essential wget -y
+wget https://download.libsodium.org/libsodium/releases/LATEST.tar.gz
+tar zxvf LATEST.tar.gz && cd libsodium-*
+./configure && make && make install
+echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
+ldconfig
 ```
 
 ## 部署
 
 ```shell
+# 直接后台运行
 ssserver -p <port> -k <password> -m aes-256-cfb --user nobody -d start
+# tmux内运行
+tmux
+ssserver -p <port> -k <password> -m aes-256-cfb --fast-open
+# 其他加密方式：
+chacha20-ietf-poly1305
+aes-256-gcm
 ```
 
 ## BUG
@@ -98,4 +114,4 @@ tcp_bbr                20480  14
 ## Linux
 
 - https://github.com/shadowsocks/shadowsocks-libev
-- 教程：https://www.itfanr.cc/2016/10/02/use-shadowsocks-to-have-better-internet-experience/
+- 教程：https://www.itfanr.cc/2016/10/02/use-shadowsocks-to-have-better-internet-experienc
