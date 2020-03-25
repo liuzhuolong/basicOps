@@ -206,6 +206,9 @@ colorscheme monokai
 "other settings
 set viminfo='20,\"5000
 set tags=tags;/
+
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936
 ```
 
 - 简易配置
@@ -229,6 +232,9 @@ colorscheme elflord
 
 set viminfo='20,\"5000
 set tags=tags;/
+
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936
 ```
 
 - monokai: https://github.com/crusoexia/vim-monokai
