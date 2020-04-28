@@ -1,0 +1,13 @@
+### urllib
+urllib在python3中拆分成5个模块：
+```
+urllib.error: 
+  ContentTooShortError;URLError;HTTPError
+urllib.parse:
+  urlparse;_splitparams;urlsplit;urlunparse;urlunsplit;urljoin;urldefrag;unquote_to_bytes;unquote;parse_qs;parse_qsl;unquote_plus;quote;quote_plus;quote_from_bytes;urlencode;to_bytes;unwrap;splittype;splithost;splituser;splitpasswd;splitport等；
+urllib.request: 
+  urlopen; install_opener; urlretrieve; urlcleanup; request_host; build_opener; _parse_proxy; parse_keqv_list; parse_http_list; _safe_gethostbyname; ftperrors; noheaders; getproxies_environment; proxy_bypass_environment; _proxy_bypass_macosx_sysconf; Request
+urllib.response: 
+  addbase; addclosehook; addinfo;addinfourl;
+urllib.robotparser
+```
