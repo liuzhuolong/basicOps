@@ -8,7 +8,11 @@
   cd cmake-3.18.4.tar.gz
   ./bootstrap && make && make install  # default install in `/usr/local/`, see README.rst for help
   ```
-- install gcc, version >= 5.0
+- install gcc, version >= 5.0 (This method will not overlap your old version of gcc)
   ```shell
-  
+  yum install centos-release-scl devtoolset-7-gcc*
+  scl enable devtoolset-7 bash  # temporarily enable gcc 7
+  # test
+  which gcc
+  gcc --version
   ```
