@@ -252,9 +252,18 @@ set fileencodings=ucs-bom,utf-8,cp936
 ## YouCompleteMe (YCM) 安装
 
 - YCM 是VIM上最好用的自动补全之一
-- 
 
 
+## gcc
+- 临时启用gcc7
+- see `https://www.centos.bz/2018/07/centos-7-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85-gcc-7/`
+```shell
+sudo yum install centos-release-scl
+sudo yum install devtoolset-7-gcc*
+scl enable devtoolset-7 bash
+which gcc
+gcc --version
+```
 
 ## 其他
 
