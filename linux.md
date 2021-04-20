@@ -135,7 +135,6 @@
 ```shell
 # set shell prompt
 PS1='\[\e[0;33m\][\u@\h \W]\[\e[m\] \$ '
-# PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
 # some aliases
 alias ls='ls --color'
@@ -197,7 +196,7 @@ set softtabstop=4 "delete 4 space one backspace
 set shiftwidth=4 "4 space for auto indent
 set colorcolumn=121 " show a vertical line
 
-set backspace=indent,eol,start #user-friendly backspace
+set backspace=indent,eol,start " user-friendly backspace
 
 " color scheme config
 set t_Co=256 "enable 256 colors
