@@ -170,6 +170,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'vim-scripts/indentpython.vim' " indent for Python
 Plugin 'scrooloose/nerdtree' " file tree
+Plugin 'ekalinin/Dockerfile.vim' " Dockerfile highlight
 " Plugin 'moby/moby', {'rtp': '/contrib/syntax/vim'} " highlight for dockerfile
 " Plugin 'Valloric/YouCompleteMe' " auto-complete
 
