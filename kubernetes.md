@@ -254,6 +254,43 @@ sudo systemctl enable --now kubelet
 
 - 加入集群后会需要部署 kube-proxy 和 CNI 插件，如果一直notready可以检查是否是镜像拉取失败
 
+
+
+# 以ovf文件新建虚拟机
+
+- ovf及vmdk文件在vmware上，需要拉取到本地
+
+- 需要设置hostname和`/etc/hosts`文件
+
+  ```shell
+  hostnamectl set-hostname <new_hostname>
+  ```
+
+  然后在`/etc/hosts`文件中 127.0.0.1 一项末尾原有的hostname替换成新的
+
+- 需要配置网络
+
+- 需要修改网卡uuid
+
+  ```shell
+  # 查看uuid
+  nmcli con
+  # 生成uuid
+  uuidgen ens33
+  # 编辑/etc/sysconfig/network-scripts/ifcfg-ens33的uuid项，然后重启network服务
+  systemctl restart network
+  ```
+
+- 最后一步
+
+  ```
+  echo 1 > /proc/sys/net/ipv4/ip_forward
+  ```
+
+  
+
+
+
 # 第一次失败尝试
 
 ## 基本环境
@@ -379,9 +416,9 @@ sudo systemctl enable --now kubelet
 
     - 重新安装docker
     - 启动服务仍然报错，查看报错日志，是由于firewalld导致的
-      
+    
   - 关闭firewalld：`systemctl stop firewalld`
-      
+    
     - 其中有一台成功启动 `systemctl start docker` 后 `docker ps` 还是不行，但用 `dockerd` 启动守护进程就可以，不知道为啥，重装了一遍可以了
 
 - 最后还要禁用swap（kubeadm要求）
