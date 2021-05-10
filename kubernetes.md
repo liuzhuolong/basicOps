@@ -258,7 +258,7 @@ sudo systemctl enable --now kubelet
 
 # 以ovf文件新建虚拟机
 
-- ovf及vmdk文件在vmware上，需要拉取到本地
+- ovf及vmdk文件在vmware上，需要拉取到本地，另外还有一个calico.yaml，放到主节点上
 
 - 需要设置hostname和`/etc/hosts`文件
 
@@ -287,7 +287,14 @@ sudo systemctl enable --now kubelet
   echo 1 > /proc/sys/net/ipv4/ip_forward
   ```
 
-  
+- 对于主节点，初始化控制面，并安装CNI插件
+
+  ```
+  kubeadm init --image-repository viperl
+  kubectl apply -f calico.yaml
+  ```
+
+- 对于worker节点，根据主节点初始化成功后的命令加入集群
 
 
 
