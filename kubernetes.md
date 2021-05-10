@@ -281,11 +281,21 @@ sudo systemctl enable --now kubelet
   systemctl restart network
   ```
 
-- 最后一步
+- 最后一步，临时
 
   ```
   echo 1 > /proc/sys/net/ipv4/ip_forward
   ```
+
+  用久：
+
+  ```shell
+  echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf
+  ```
+
+  都要重启网络服务`systemctl restart network`
+
+  
 
 - 对于主节点，初始化控制面，并安装CNI插件
 
