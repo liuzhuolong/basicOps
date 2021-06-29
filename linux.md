@@ -171,6 +171,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/indentpython.vim' " indent for Python
 Plugin 'scrooloose/nerdtree' " file tree
 Plugin 'ekalinin/Dockerfile.vim' " Dockerfile highlight
+Plugin 'fatih/vim-go'  " go development plugin
 " Plugin 'moby/moby', {'rtp': '/contrib/syntax/vim'} " highlight for dockerfile
 " Plugin 'Valloric/YouCompleteMe' " auto-complete
 
@@ -209,6 +210,7 @@ set tags=tags;/
 
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936
+set hlsearch
 ```
 
 - 简易配置
