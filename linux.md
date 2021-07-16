@@ -267,6 +267,25 @@ which gcc
 gcc --version
 ```
 
+## LVM
+- `fdisk -l` 查看硬盘情况
+- `fdisk /dev/vdb` 管理硬盘
+   - 命令 n 新建分区
+   - 命令 t 改变分区类型：选择 8e - Linux LVM
+   - 命令 w 应用修改并退出
+- `pvcreate /dev/vdb1` 创建PV (Physical Volumn 物理卷)
+   - pvdisplay 查看物理卷
+   - pvremove 移除物理卷
+- `vgcreate <vg_name> <pv_name>` 创建VG（Volumn Group 卷组）
+   - vgdisplay 查看VG
+   - vgremove 移除VG
+- `lvcreate [-L <size>|-l 100%FREE] -n <lv_name> <vg_name>` 创建LV (Logical Volumn 逻辑卷）
+   - lvdisplay 查看LV
+   - lvremove 移除LV
+- `mkfs.ext4 <lv_name>` 使用ext4格式化逻辑卷
+- `mount <lv_name> <dir>` 挂载卷（临时）
+- 编辑 `/etc/fstab` 添加一行 `<lv_name> <mount_dir> ext4 defaults 0 0`，使用 `mount -a` 生效 （永久）
+
 ## 其他
 
 - make 指令可以通过 -j<num_threads> 来指定并行编译
