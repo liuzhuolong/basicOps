@@ -74,4 +74,37 @@ def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
 
 ## Class
 
-### 
+### @property
+Function decorated by @property is used when get attributes, the value returned will be attributes' value
+Function decorated by @<attr>.setter is called when set attributes, usually used for checking legality of values
+
+A example:
+    
+```python
+class test:
+    def __init__(self,):
+        self._a = 123
+        
+    @property
+    def a(self,):
+        return self._a
+    
+    @a.setter
+    def a(self, value):
+        if value >= 100:
+            raise ValueError("Cannot larger than 100!")
+        self._a = value
+
+t = test()
+print(t.a)
+# 123
+t.a = 13
+print(t.a)
+# 13
+t.a = 111
+# Traceback ...
+  ...
+  ValueError: Cannot larger than 100!
+```
+
+
