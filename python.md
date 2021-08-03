@@ -54,8 +54,8 @@ The decorator `@functools.wraps` is used to maintain functions' `__name__`, with
 
 
 ### Positional-Only / Keyword-Only Syntax
-`/` is positional-only symbol, means that all parameters before the `/` can only be passed by position
-`*` is keyword-only symbol, means that all parameters after the `*` can only be passed by keyword
+- `/` is positional-only symbol, means that all parameters before the `/` can only be passed by position
+- `*` is keyword-only symbol, means that all parameters after the `*` can only be passed by keyword
 
 For a function like `def test(a, b, /, c, d=1, *, e, f=2)`
 - a, b can only be passed as postional arguments
@@ -75,8 +75,8 @@ def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
 ## Class
 
 ### @property
-Function decorated by @property is used when get attributes, the value returned will be attributes' value
-Function decorated by @<attr>.setter is called when set attributes, usually used for checking legality of values
+- Function decorated by @property is used when get attributes, the value returned will be attributes' value
+- Function decorated by @<attr>.setter is called when set attributes, usually used for checking legality of values
 
 A example:
     
