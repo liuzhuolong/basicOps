@@ -103,8 +103,8 @@ print(t.a)
 # 13
 t.a = 111
 # Traceback ...
-  ...
-  ValueError: Cannot larger than 100!
+# ...
+# ValueError: Cannot larger than 100!
 ```
 
 
