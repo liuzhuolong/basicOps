@@ -168,40 +168,30 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'vim-scripts/indentpython.vim' " indent for Python
-Plugin 'scrooloose/nerdtree' " file tree
-Plugin 'ekalinin/Dockerfile.vim' " Dockerfile highlight
+Plugin 'jiangmiao/auto-pairs'  " Auto pairs for brackets and quotations
+Plugin 'vim-scripts/indentpython.vim'  " indent for Python
+Plugin 'ekalinin/Dockerfile.vim'  " Dockerfile highlight
 Plugin 'fatih/vim-go'  " go development plugin
-" Plugin 'moby/moby', {'rtp': '/contrib/syntax/vim'} " highlight for dockerfile
-" Plugin 'Valloric/YouCompleteMe' " auto-complete
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" configures for above plugins
-
-" NERDTree
-" map F2 to open NERDTree
-map <F2> :NERDTreeToggle<CR>
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 " Followings are non-Plugin stuffs
-syn on "enable highlight
-set nu "show line number
-set laststatus=2 "show status bar
+syn on  "enable highlight
+set nu  "show line number
+set laststatus=2  "show status bar
 
-set autoindent "auto indent
-set expandtab "use space replace tab
-set tabstop=4 "4 space one tab
-set softtabstop=4 "delete 4 space one backspace
-set shiftwidth=4 "4 space for auto indent
-set colorcolumn=121 " show a vertical line
+set autoindent  "auto indent
+set expandtab  "use space replace tab
+set tabstop=4  "4 space one tab
+set softtabstop=4  "delete 4 space one backspace
+set shiftwidth=4  "4 space for auto indent
+set colorcolumn=121  " show a vertical line
 
-set backspace=indent,eol,start " user-friendly backspace
+set backspace=indent,eol,start  " user-friendly backspace
 
 " color scheme config
-set t_Co=256 "enable 256 colors
+set t_Co=256  "enable 256 colors
 colorscheme monokai
 
 "other settings
