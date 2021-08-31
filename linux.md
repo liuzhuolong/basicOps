@@ -176,6 +176,14 @@ Plugin 'fatih/vim-go'  " go development plugin
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+
+" configures for above plugins
+
+" auto-pairs
+let g:AutoPairsShortcutFastWrap = '<C-e>'
+let g:AutoPairsCenterLine = 0
+
+
 " Followings are non-Plugin stuffs
 syn on  "enable highlight
 set nu  "show line number
